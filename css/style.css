@@ -508,3 +508,32 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   text-align: center;
 }
 
+/* 9. RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .hero .container,
+  .receita-topo,
+  .receita-corpo { grid-template-columns: 1fr; }
+  .hero-imagem { max-width: 420px; margin-inline: auto; order: -1; }
+  .ingredientes { position: static; }
+  .rodape-grade { grid-template-columns: 1fr 1fr; }
+  .rodape-grade > :first-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  .cabecalho { position: static; }
+  .cabecalho .container { flex-direction: column; align-items: stretch; }
+  .logo { justify-content: center; }
+  .menu ul { justify-content: center; }
+  .menu a { padding: 0.4rem 0.65rem; font-size: 0.92rem; }
+  .pesquisa { max-width: none; }
+  .grade { grid-template-columns: 1fr; }
+  .rodape-grade { grid-template-columns: 1fr; }
+  .passos li { padding-left: 3rem; }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+  .card:hover, .card-categoria:hover, .botao:hover { transform: none; }
+}
