@@ -77,3 +77,84 @@ function escapar(texto) {
 }
 
 /* Liga a pesquisa a cada formulário que tiver a classe "pesquisa" */
+function iniciarPesquisa(formulario) {
+  const campo = formulario.querySelector("input");
+  const lista = formulario.querySelector(".sugestoes");
+  const raiz = formulario.dataset.raiz || "";   /* "" na raiz do site, "../" nas subpastas */
+  let itemAtivo = -1;
+
+  function fechar() {
+    lista.hidden = true;
+    lista.innerHTML = "";
+    campo.setAttribute("aria-expanded", "false");
+    campo.removeAttribute("aria-activedescendant");
+    itemAtivo = -1;
+  }
+
+  function marcar(indice) {
+    const itens = lista.querySelectorAll("li[role='option']");
+    itens.forEach(function (item) {
+      item.classList.remove("ativa");
+      item.setAttribute("aria-selected", "false");
+    });
+    itemAtivo = indice;
+    if (indice >= 0 && itens[indice]) {
+      itens[indice].classList.add("ativa");
+      itens[indice].setAttribute("aria-selected", "true");
+      campo.setAttribute("aria-activedescendant", itens[indice].id);
+      itens[indice].scrollIntoView({ block: "nearest" });
+    } else {
+      campo.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function mostrar() {
+    const texto = campo.value;
+    if (normalizar(texto) === "") { fechar(); return; }
+
+    const encontradas = buscar(texto).slice(0, 8);
+    itemAtivo = -1;
+    campo.removeAttribute("aria-activedescendant");
+
+    if (encontradas.length === 0) {
+      lista.innerHTML = '<li class="sem-resultado" role="option" aria-disabled="true">Nenhuma receita encontrada</li>';
+    } else {
+      lista.innerHTML = encontradas.map(function (receita, i) {
+        return '<li role="option" id="' + lista.id + "-" + i + '" aria-selected="false">' +
+               '<a href="' + raiz + receita.arquivo + '" tabindex="-1">' + destacar(receita.nome, texto) + "</a></li>";
+      }).join("");
+    }
+    lista.hidden = false;
+    campo.setAttribute("aria-expanded", "true");
+  }
+
+  campo.addEventListener("input", mostrar);
+  campo.addEventListener("focus", mostrar);
+
+  campo.addEventListener("keydown", function (evento) {
+    const itens = lista.querySelectorAll("li[role='option'] a");
+    if (evento.key === "ArrowDown" && itens.length > 0) {
+      evento.preventDefault();
+      marcar(itemAtivo + 1 >= itens.length ? 0 : itemAtivo + 1);
+    } else if (evento.key === "ArrowUp" && itens.length > 0) {
+      evento.preventDefault();
+      marcar(itemAtivo - 1 < 0 ? itens.length - 1 : itemAtivo - 1);
+    } else if (evento.key === "Escape") {
+      fechar();
+    } else if (evento.key === "Enter" && itens.length > 0) {
+      /* Enter abre a sugestão marcada; se nenhuma estiver marcada, abre a primeira */
+      evento.preventDefault();
+      window.location.href = itens[itemAtivo >= 0 ? itemAtivo : 0].getAttribute("href");
+    }
+  });
+
+  /* Fecha a lista ao clicar fora ou ao sair do formulário com Tab */
+  document.addEventListener("click", function (evento) {
+    if (!formulario.contains(evento.target)) fechar();
+  });
+  formulario.addEventListener("focusout", function (evento) {
+    if (!formulario.contains(evento.relatedTarget)) fechar();
+  });
+}
+
+document.querySelectorAll("form.pesquisa").forEach(iniciarPesquisa);
