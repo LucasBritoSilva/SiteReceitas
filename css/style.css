@@ -29,3 +29,64 @@
   --espaco: clamp(1rem, 4vw, 2rem);
 }
 
+/* 2. BASE */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+  margin: 0 0 0.6em;
+  color: var(--cor-texto);
+}
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+h3 { font-size: 1.25rem; }
+
+a { color: var(--cor-destaque); text-underline-offset: 3px; }
+a:hover { color: var(--cor-destaque-escuro); }
+
+/* Foco visível para quem navega pelo teclado */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--cor-dourado);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.container {
+  width: min(100% - 2 * var(--espaco), var(--largura-max));
+  margin-inline: auto;
+}
+
+.so-leitor-de-tela {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.pular-conteudo {
+  position: absolute;
+  left: 1rem; top: -4rem;
+  background: var(--cor-texto);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: var(--raio-pequeno);
+  z-index: 100;
+  transition: top 0.2s;
+}
+.pular-conteudo:focus { top: 1rem; color: #fff; }
+
