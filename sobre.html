@@ -22,3 +22,26 @@
           <li><a href="receitas.html">Receitas</a></li>
           <li><a href="index.html#categorias">Categorias</a></li>
           <li><a href="sobre.html" aria-current="page">Sobre</a></li>
+        </ul>
+      </nav>
+      <form class="pesquisa" role="search" action="receitas.html" data-raiz="">
+        <label class="so-leitor-de-tela" for="busca-1">Pesquisar receitas</label>
+        <div class="pesquisa-campo">
+          <input id="busca-1" name="q" type="search" placeholder="Buscar receita..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sugestoes-1">
+          <button type="submit">Buscar</button>
+        </div>
+        <ul class="sugestoes" id="sugestoes-1" role="listbox" aria-label="Sugestões de receitas" hidden></ul>
+      </form>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="titulo-pagina">
+      <div class="container">
+        <h1>Sobre o site</h1>
+        <p>Um caderno de receitas que cresceu junto com quem o escreve.</p>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container" style="max-width: 760px;">
+        <h2>Como tudo começou</h2>
+        <p>A Cozinha do Brito nasceu em 2022, quando Lucas Brito estava aprendendo HTML e quis guardar suas receitas favoritas em um lugar só. Era um site pequeno, com poucas páginas e muita vontade de aprender.</p>
