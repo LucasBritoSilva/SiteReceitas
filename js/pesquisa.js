@@ -64,3 +64,16 @@ function buscar(texto) {
 }
 
 /* Destaca em negrito o trecho digitado dentro do nome da receita */
+function destacar(nome, texto) {
+  const termo = normalizar(texto);
+  const inicio = normalizar(nome).indexOf(termo);
+  if (inicio === -1 || termo === "") return escapar(nome);
+  const fim = inicio + termo.length;
+  return escapar(nome.slice(0, inicio)) + "<mark>" + escapar(nome.slice(inicio, fim)) + "</mark>" + escapar(nome.slice(fim));
+}
+
+function escapar(texto) {
+  return texto.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* Liga a pesquisa a cada formulário que tiver a classe "pesquisa" */
