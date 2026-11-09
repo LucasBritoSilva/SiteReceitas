@@ -471,3 +471,40 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .categorias-da-receita a:hover { background: var(--cor-destaque-escuro); color: #fff; }
 .voltar { display: inline-block; margin-top: 1.5rem; font-weight: 600; }
 
+/* 8. RODAPÉ */
+.rodape {
+  background: #2e1f17;
+  color: #e9dccd;
+  padding-block: 3rem 1.5rem;
+  margin-top: 3rem;
+}
+.rodape a { color: #f3c98a; }
+.rodape a:hover { color: #fff; }
+.rodape-grade {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+}
+.rodape h2 { font-size: 1.1rem; color: #fff; margin-bottom: 0.8rem; }
+.rodape ul { list-style: none; margin: 0; padding: 0; }
+.rodape li { margin-bottom: 0.4rem; }
+.rodape p { margin: 0 0 0.6rem; }
+.contatos { display: flex; gap: 0.9rem; margin-top: 0.8rem; }
+.contatos a {
+  background: #fff;
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+.contatos a:hover { transform: translateY(-3px); }
+.contatos img { width: 24px; height: 24px; }
+.rodape-fim {
+  border-top: 1px solid #4a372b;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
