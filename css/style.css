@@ -1,0 +1,31 @@
+/* =====================================================
+   Cozinha do Brito - folha de estilo única do site
+   1. Variáveis  2. Base  3. Cabeçalho  4. Pesquisa
+   5. Hero  6. Seções e cards  7. Receita  8. Rodapé
+   9. Responsividade
+   ===================================================== */
+
+/* 1. VARIÁVEIS: mude cores, fontes e medidas aqui */
+:root {
+  --cor-fundo: #fff8ef;
+  --cor-papel: #ffffff;
+  --cor-texto: #2e1f17;
+  --cor-texto-suave: #6b5a50;
+  --cor-destaque: #b33a22;       /* terracota */
+  --cor-destaque-escuro: #8c2a16;
+  --cor-secundaria: #4d6b2f;     /* verde-oliva */
+  --cor-dourado: #e8a33d;
+  --cor-borda: #ecdcc8;
+  --cor-creme: #fbeedc;
+
+  --fonte-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+  --fonte-texto: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --raio: 20px;
+  --raio-pequeno: 12px;
+  --sombra: 0 6px 20px rgba(80, 40, 20, 0.08);
+  --sombra-forte: 0 14px 34px rgba(80, 40, 20, 0.18);
+  --largura-max: 1140px;
+  --espaco: clamp(1rem, 4vw, 2rem);
+}
+
