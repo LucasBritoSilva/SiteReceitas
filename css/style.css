@@ -90,3 +90,53 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 .pular-conteudo:focus { top: 1rem; color: #fff; }
 
+/* 3. CABEÇALHO E MENU */
+.cabecalho {
+  background: var(--cor-papel);
+  border-bottom: 1px solid var(--cor-borda);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.cabecalho .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-block: 0.85rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+.logo img { width: 38px; height: 38px; }
+.logo b { color: var(--cor-destaque); }
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.97rem;
+  transition: background 0.2s, color 0.2s;
+}
+.menu a:hover { background: var(--cor-creme); color: var(--cor-destaque); }
+.menu a[aria-current="page"] { background: var(--cor-destaque); color: #fff; }
+
