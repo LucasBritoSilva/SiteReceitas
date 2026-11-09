@@ -140,3 +140,70 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .menu a:hover { background: var(--cor-creme); color: var(--cor-destaque); }
 .menu a[aria-current="page"] { background: var(--cor-destaque); color: #fff; }
 
+/* 4. CAMPO DE PESQUISA E SUGESTÕES */
+.pesquisa { position: relative; width: 100%; max-width: 420px; }
+.pesquisa-campo {
+  display: flex;
+  align-items: center;
+  background: var(--cor-papel);
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+  padding-left: 1.1rem;
+  box-shadow: var(--sombra);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pesquisa-campo:focus-within { border-color: var(--cor-destaque); }
+.pesquisa-campo input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  padding: 0.7rem 0.5rem;
+  color: var(--cor-texto);
+}
+.pesquisa-campo input:focus-visible { outline: none; }
+.pesquisa-campo button {
+  border: 0;
+  background: var(--cor-destaque);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.7rem 1.3rem;
+  border-radius: 0 999px 999px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pesquisa-campo button:hover { background: var(--cor-destaque-escuro); }
+
+.sugestoes {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  background: var(--cor-papel);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  box-shadow: var(--sombra-forte);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 60;
+  text-align: left;
+}
+.sugestoes[hidden] { display: none; }
+.sugestoes li { border-radius: 8px; }
+.sugestoes a {
+  display: block;
+  padding: 0.6rem 0.8rem;
+  color: var(--cor-texto);
+  text-decoration: none;
+  border-radius: 8px;
+}
+.sugestoes li.ativa a,
+.sugestoes a:hover { background: var(--cor-creme); color: var(--cor-destaque); }
+.sugestoes mark { background: transparent; color: var(--cor-destaque); font-weight: 700; }
+.sugestoes .sem-resultado { padding: 0.7rem 0.8rem; color: var(--cor-texto-suave); font-size: 0.95rem; }
+
