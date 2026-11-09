@@ -35,3 +35,32 @@ const RECEITAS = [
 ];
 
 /* Remove acentos e deixa tudo minúsculo: "Nhoque" e "nhóque" ficam iguais */
+function normalizar(texto) {
+  return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+}
+
+/* Procura receitas cujo nome contenha o texto digitado.
+   Quem começa com o texto vem primeiro; depois quem começa uma palavra; depois o resto. */
+function buscar(texto) {
+  const termo = normalizar(texto);
+  if (termo === "") return [];
+
+  const resultados = [];
+  for (const receita of RECEITAS) {
+    const nome = normalizar(receita.nome);
+    const posicao = nome.indexOf(termo);
+    if (posicao === -1) continue;
+
+    let pontos = 3;
+    if (posicao === 0) pontos = 1;
+    else if (nome.charAt(posicao - 1) === " ") pontos = 2;
+    resultados.push({ receita: receita, pontos: pontos });
+  }
+
+  resultados.sort(function (a, b) {
+    return a.pontos - b.pontos || a.receita.nome.localeCompare(b.receita.nome, "pt-BR");
+  });
+  return resultados.map(function (item) { return item.receita; });
+}
+
+/* Destaca em negrito o trecho digitado dentro do nome da receita */
